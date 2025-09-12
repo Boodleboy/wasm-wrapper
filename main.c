@@ -85,6 +85,17 @@ int main(void) {
 		printf("not sure what module is\n");
 	}
 
+	uint32 argv2[2];
+	argv2[0] = 8;
+
+	char *main_argv[2] = {"hello", "\0"};
+
+	printf("executing main\n");	
+	result = wasm_application_execute_main(module_inst, 1, main_argv);
+	if (!result) {
+		printf("failed to execute main: %s\n", wasm_runtime_get_exception(module_inst));
+		return 1;
+	}
 
 	func = wasm_runtime_lookup_function(module_inst, "foo_hello");
 	if (!func) {
@@ -100,8 +111,6 @@ int main(void) {
 	}
 	printf("exec_env created\n");
 
-	uint32 argv2[2];
-	argv2[0] = 8;
 
 	if (wasm_runtime_call_wasm(exec_env, func, 1, argv2)) {
 		printf("function run\n");
