@@ -1,8 +1,7 @@
 #!/bin/sh
 
-cd wasi-libc;
+cd wasi-libc
 
-make CC=../wasi-sdk-build/bin/clang \
-     AR=../wasi-sdk-build/bin/llvm-ar \
-     NM=../wasi-sdk-build/bin/llvm-nm
-
+make CC=../sub/wasi-sdk/build/install/bin/clang \
+  AR=../sub/wasi-sdk/build/install/bin/llvm-ar \
+  NM=../sub/wasi-sdk/build/install/bin/llvm-nm
