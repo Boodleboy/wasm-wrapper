@@ -1,0 +1,6 @@
+[submodule "sub/wasi-sdk"]
+	path = sub/wasi-sdk
+	url = https://github.com/Boodleboy/wasi-sdk.git
+[submodule "sub/wamr"]
+	path = sub/wamr
+	url = https://github.com/Boodleboy/wasm-micro-runtime.git
