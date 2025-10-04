@@ -19,7 +19,7 @@ set(WAMR_BUILD_SIMD 1)
 set(WAMR_BUILD_REF_TYPES 1)
 
 # Path to WAMR source root
-set(WAMR_ROOT_DIR wasm-micro-runtime)
+set(WAMR_ROOT_DIR sub/wamr)
 
 # Pull in WAMR's cmake file which sets WAMR_RUNTIME_LIB_SOURCE
 include(${WAMR_ROOT_DIR}/build-scripts/runtime_lib.cmake)
