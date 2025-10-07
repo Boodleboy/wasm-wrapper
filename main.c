@@ -5,7 +5,14 @@
 
 #include <stdio.h>
 
+int run_module(char*);
+
 int main(void) {
+  return run_module("modules/hello.wasm");
+}
+
+int run_module(char *path) {
+
 	char *buffer, error_buf[128];
 	wasm_module_t module;
 	wasm_module_inst_t module_inst;
@@ -18,7 +25,6 @@ int main(void) {
 		printf("failed init\n");
 		return 1;
 	}
-	printf("runtime initted\n");
 
 	/* read WASM file into a memory buffer */
 	buffer = bh_read_file_to_buffer("modules/hello.wasm", &size);
@@ -26,7 +32,6 @@ int main(void) {
 		printf("failed read to buffer\n");
 		return 1;
 	}
-	printf("file read to buffer\n");
 
 	/* add line below if we want to export native functions to WASM app */
 	//wasm_runtime_register_natives();
@@ -38,7 +43,6 @@ int main(void) {
 		printf("failed runetime load: %s\n", error_buf);
 		return 1;
 	}
-	printf("runtime loaded\n");
 
 	/* create an instance of the WASM module (WASM linear memory is ready) */
 	module_inst = wasm_runtime_instantiate(module, stack_size, heap_size,
@@ -47,7 +51,6 @@ int main(void) {
 		printf("failed instantiation\n");
 		return 1;
 	}
-	printf("instantiated\n");
 
 	const char *dir_list[] = {".", NULL};
 	const char *map_dir_list[] = {NULL};
@@ -75,12 +78,10 @@ int main(void) {
 		return 1;
 	}
 
-	printf("wasi initted\n");
-
 	if (module_inst->module_type == Wasm_Module_Bytecode) {
-		printf("module is bytecode\n");
+		//printf("module is bytecode\n");
 	} else if (module_inst->module_type == Wasm_Module_AoT) {
-		printf("module is ahead of time\n");
+		//printf("module is ahead of time\n");
 	} else {
 		printf("not sure what module is\n");
 	}
@@ -90,7 +91,6 @@ int main(void) {
 
 	char *main_argv[2] = {"hello", "\0"};
 
-	printf("executing main\n");	
 	result = wasm_application_execute_main(module_inst, 1, main_argv);
 	if (!result) {
 		printf("failed to execute main: %s\n", wasm_runtime_get_exception(module_inst));
@@ -102,14 +102,12 @@ int main(void) {
 		printf("function not found\n");
 		return 1;
 	}
-	printf("function found\n");
 
 	exec_env = wasm_runtime_create_exec_env(module_inst, stack_size);
 	if (!exec_env) {
 		printf("exec_env create failed\n");
 		return 1;
 	}
-	printf("exec_env created\n");
 
 
 	if (wasm_runtime_call_wasm(exec_env, func, 1, argv2)) {
@@ -119,7 +117,7 @@ int main(void) {
 		return 1;
 	}
 	
-
-	return 0;
+  return 0;
 }
+
 
