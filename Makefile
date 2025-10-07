@@ -1,9 +1,9 @@
-BUILD_DIR=build
-TARG=my_wamr_app
-WASM_DIR=modules
+BUILD_DIR := build
+TARG := my_wamr_app
+WASM_DIR := modules
 
-WASM_SOURCE=$(WASM_DIR)/hello.c
-WASM_FILES=$(WASM_SOURCE:.c=.wasm)
+WASM_SOURCE := $(wildcard $(WASM_DIR)/*.c)
+WASM_FILES := $(WASM_SOURCE:.c=.wasm)
 
 run: $(BUILD_DIR)/$(TARG) $(WASM_FILES)
 	./$(BUILD_DIR)/$(TARG)
