@@ -19,4 +19,7 @@ $(BUILD_DIR)/$(TARG): $(BUILD_DIR)/Makefile main.c
 	cd $(BUILD_DIR) && make
 
 $(BUILD_DIR)/Makefile: CMakeLists.txt
-	cmake -S . -B $(BUILD_DIR)
+	cmake \
+		-DCMAKE_BUILD_TYPE=Debug \
+		-S . \
+		-B $(BUILD_DIR)

@@ -7,6 +7,11 @@ set(CMAKE_C_COMPILER gcc)
 # use lld linker
 set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -fuse-ld=lld")
 
+# Debug symbols
+set(CMAKE_BUILD_TYPE Debug)
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+add_compile_options(-g -O0)
+
 # WAMR build settings
 set(WAMR_BUILD_PLATFORM "linux")
 set(WAMR_BUILD_TARGET "X86_64")
