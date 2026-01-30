@@ -11,7 +11,7 @@ run: $(BUILD_DIR)/$(TARG) $(WASM_FILES)
 %.wasm: %.c
 	./sub/wasi-sdk/build/install/bin/clang \
 		--target=wasm32-wasi \
-		--sysroot=./sub/wasi-sdk/build/install/share/wasi-sysroot \
+		--sysroot=./install/sysroot \
 		-o $@ \
 		$<
 

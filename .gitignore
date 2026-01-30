@@ -1,4 +1,5 @@
 build
+install
 modules/*.wasm
 .cache
 compile_commands.json
