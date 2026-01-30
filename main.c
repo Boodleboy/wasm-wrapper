@@ -7,7 +7,7 @@
 
 int run_module(char *);
 
-int main(void) { return run_module("modules/files.wasm"); }
+int main(void) { return run_module("modules/testfile.wasm"); }
 
 int run_module(char *path) {
 
